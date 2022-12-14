@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-aya-bpf = { git = "https://github.com/aya-rs/aya", branch = "main" }
-aya-log-ebpf = { git = "https://github.com/aya-rs/aya", branch = "main" }
+aya-bpf = { git = "https://github.com/bpfdeploy-io/aya", branch = "ml/cgroup-device" }
+aya-log-ebpf = { git = "https://github.com/bpfdeploy-io/aya", branch = "ml/cgroup-device" }
 cgroup-dev-common = { path = "../cgroup-dev-common" }
 
 [[bin]]

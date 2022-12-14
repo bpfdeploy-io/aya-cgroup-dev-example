@@ -1,5 +1,5 @@
 use aya::{include_bytes_aligned, Bpf};
-use aya::programs::CgroupSysctl;
+use aya::programs::CgroupDevice;
 use aya_log::BpfLogger;
 use clap::Parser;
 use log::{info, warn};
@@ -33,7 +33,7 @@ async fn main() -> Result<(), anyhow::Error> {
         // This can happen if you remove all log statements from your eBPF program.
         warn!("failed to initialize eBPF logger: {}", e);
     }
-    let program: &mut CgroupSysctl = bpf.program_mut("cgroup_dev").unwrap().try_into()?;
+    let program: &mut CgroupDevice = bpf.program_mut("cgroup_dev").unwrap().try_into()?;
     let cgroup = std::fs::File::open(opt.cgroup_path)?;
     program.load()?;
     program.attach(cgroup)?;

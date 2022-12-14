@@ -2,21 +2,21 @@
 #![no_main]
 
 use aya_bpf::{
-    macros::cgroup_sysctl,
-    programs::SysctlContext,
+    macros::cgroup_device,
+    programs::DeviceContext,
 };
 use aya_log_ebpf::info;
 
-#[cgroup_sysctl(name="cgroup_dev")]
-pub fn cgroup_dev(ctx: SysctlContext) -> i32 {
+#[cgroup_device(name="cgroup_dev")]
+pub fn cgroup_dev(ctx: DeviceContext) -> i32 {
     match try_cgroup_dev(ctx) {
         Ok(ret) => ret,
         Err(ret) => ret,
     }
 }
 
-fn try_cgroup_dev(ctx: SysctlContext) -> Result<i32, i32> {
-    info!(&ctx, "sysctl operation called");
+fn try_cgroup_dev(ctx: DeviceContext) -> Result<i32, i32> {
+    info!(&ctx, "device operation called");
     Ok(0)
 }
 
